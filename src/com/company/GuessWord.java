@@ -31,12 +31,12 @@ public class GuessWord {
     }
     public static boolean checkAnswer (String puzzledWord, String answer){
         if (puzzledWord.length()>=answer.length()){
-            return printComparisonResult(puzzledWord, answer);
+            return printComparisonResult(puzzledWord, answer, puzzledWord.length());
         } else {
-            return printComparisonResult(answer, puzzledWord);
+            return printComparisonResult(answer, puzzledWord, puzzledWord.length());
         }
     }
-    public static boolean printComparisonResult(String maxString, String minString){
+    public static boolean printComparisonResult(String maxString, String minString, int puzzledWordLength){
         byte QUANTITY_OF_ITER = 15;
         int result = 0;
         for (int i = 0; i < minString.length(); i++) {
@@ -49,7 +49,7 @@ public class GuessWord {
         }
         printSymbol('#',QUANTITY_OF_ITER-minString.length());
         System.out.println();
-        if (result==minString.length()){
+        if (result==puzzledWordLength){
             System.out.println("You win!");
             return false;
         } else {
