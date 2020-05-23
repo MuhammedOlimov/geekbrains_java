@@ -11,7 +11,8 @@
 import java.util.Random;
 import java.util.Scanner;
 public class Main {
-    public static int SIZE = 3;
+    public static int SIZE = 6;
+    public static int BLOCK = 4;
     public static int DOTS_TO_WIN = 3;
     public static final char DOT_EMPTY = '•';
     public static final char DOT_X = 'X';
@@ -47,16 +48,51 @@ public class Main {
         System.out.println("Игра закончена");
     }
     public static boolean checkWin(char symb) {
-        if(map[0][0] == symb && map[0][1] == symb && map[0][2] == symb) return true;
-        if(map[1][0] == symb && map[1][1] == symb && map[1][2] == symb) return true;
-        if (map[2][0] == symb && map[2][1] == symb && map[2][2] == symb) return true;
-        if (map[0][0] == symb && map[1][0] == symb && map[2][0] == symb) return true;
-        if (map[0][1] == symb && map[1][1] == symb && map[2][1] == symb) return true;
-        if (map[0][2] == symb && map[1][2] == symb && map[2][2] == symb) return true;
-        if (map[0][0] == symb && map[1][1] == symb && map[2][2] == symb) return true;
-        if (map[2][0] == symb && map[1][1] == symb && map[0][2] == symb) return true;
+        for (int col=0; col<3; col++) {
+            for (int row=0; row<3; row++) {
+                // Вызываем методы проверки и если хоть один блок заполнен,
+                // то игрок, который проставляет это символ, выиграл
+                // иначе продолжаем для другого смещения
+                if (checkDiagonal(symb, col, row) || checkLanes(symb, col, row)) return true;
+            }
+        }
+        // Все подквадраты в квадрате проверены. 4-х последовательностей
+        // подряд не выявлено. Значит еще не победа.
         return false;
     }
+
+    /** Проверяем диагонали */
+    public static boolean checkDiagonal(char symb, int offsetX, int offsetY) {
+        boolean toRight, toLeft;
+        toRight = true;
+        toLeft = true;
+        for (int i=0; i<BLOCK; i++) {
+            toRight &= (map[i+offsetX][i+offsetY] == symb);
+            toLeft &= (map[(BLOCK+offsetX)-(i)-1][i+offsetX] == symb);
+        }
+
+        if (toRight || toLeft) return true;
+
+        return false;
+    }
+
+    /** Проверяем горизонтальные и вертикальные линии */
+    public static boolean checkLanes(char symb, int offsetX, int offsetY) {
+        boolean cols, rows;
+        for (int col=offsetX; col<BLOCK+offsetX; col++) {
+            cols = true;
+            rows = true;
+            for (int row=offsetY; row<BLOCK+offsetY; row++) {
+                cols &= (map[col][row] == symb);
+                rows &= (map[row][col] == symb);
+            }
+
+            if (cols || rows) return true;
+        }
+
+        return false;
+    }
+
     public static boolean isMapFull() {
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
