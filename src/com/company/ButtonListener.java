@@ -42,10 +42,10 @@ public class ButtonListener implements ActionListener {
         double secondNumber = 0.00;
         String operand = "";
         String [] subString = new String[0];
-        String operandPlus = "/+";
+        String operandPlus = "+";
         String operandMinus = "-";
         if (scoreBoard.indexOf(operandPlus)>0){
-            subString = scoreBoard.split(operandPlus);
+            subString = scoreBoard.split("\\+");
             operand = operandPlus;
         } else if (scoreBoard.indexOf(operandMinus)>0){
             subString = scoreBoard.split(operandMinus);
