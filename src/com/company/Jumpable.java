@@ -1,5 +1,5 @@
 package com.company;
 
 public interface Jumpable {
-    void  jump ();
+    public boolean  jump (int height);
 }

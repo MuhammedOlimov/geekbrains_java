@@ -1,5 +1,5 @@
 package com.company;
 
 public interface Obstacles {
-    void doActivity (Creatures creatures);
+    public boolean doActivity (Creatures creatures);
 }

@@ -8,15 +8,20 @@ public class Main {
     public static void main(String[] args) {
 
         Creatures[] creatures = new Creatures[]{
-                new Cat(), new Human(), new Robocop(), new Human(), new Robocop()
+                new Cat(10, 8),
+                new Human(11, 9),
+                new Robocop(15, 6),
+                new Human(9, 6),
+                new Robocop(21, 13)
         };
 
-        Obstacles[] obstacles = {new Treadmill(), new Wall()};
+        Obstacles[] obstacles = {new Treadmill(9), new Wall(13)};
         for (Creatures participant : creatures) {
             for (Obstacles obstacle : obstacles) {
-                obstacle.doActivity(participant);
+               if (obstacle.doActivity(participant)) {
+                  break;
+               }
             }
         }
-
     }
 }

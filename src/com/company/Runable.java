@@ -1,5 +1,5 @@
 package com.company;
 
 public interface Runable {
-    void run ();
+    public boolean run (int length);
 }

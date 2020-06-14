@@ -1,12 +1,15 @@
 package com.company;
 
 public class Treadmill implements Obstacles {
-
-    @Override
-    public void doActivity(Creatures creatures) {
-        run((Runable) creatures);
+    private int length;
+    Treadmill (int length){
+        this.length = length;
     }
-    private void run (Runable runable){
-        runable.run();
+    @Override
+    public boolean doActivity(Creatures creatures) {
+        return run((Runable) creatures);
+    }
+    private boolean run (Runable runable){
+        return runable.run(length);
     }
 }

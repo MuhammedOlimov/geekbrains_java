@@ -1,12 +1,15 @@
 package com.company;
 
 public class Wall implements Obstacles {
-
-    @Override
-    public void doActivity(Creatures creatures) {
-        jump((Jumpable) creatures);
+    private int height;
+    Wall (int height){
+        this.height = height;
     }
-    private void jump(Jumpable jumpable){
-        jumpable.jump();
+    @Override
+    public boolean doActivity(Creatures creatures) {
+       return jump((Jumpable) creatures);
+    }
+    private boolean jump(Jumpable jumpable){
+       return jumpable.jump(height);
     }
 }
