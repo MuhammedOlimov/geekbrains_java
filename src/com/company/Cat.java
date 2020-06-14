@@ -1,8 +1,15 @@
 package com.company;
 
-public class Cat implements Creatures{
+public class Cat implements Creatures, Jumpable, Runable{
 
-    public Cat(String name, int abilityRun, int abilityJump) {
-        super(name, abilityRun, abilityJump);
+
+    @Override
+    public void jump() {
+        System.out.println("Cat is jumping");
+    }
+
+    @Override
+    public void run() {
+        System.out.println("Human is running");
     }
 }

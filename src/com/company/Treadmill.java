@@ -1,8 +1,12 @@
 package com.company;
 
-public class Treadmill {
-    private int lengthOfRoad;
-    Treadmill (int lengthOfRoad){
-        this.lengthOfRoad = lengthOfRoad;
+public class Treadmill implements Obstacles {
+
+    @Override
+    public void doActivity(Creatures creatures) {
+        run((Runable) creatures);
+    }
+    private void run (Runable runable){
+        runable.run();
     }
 }

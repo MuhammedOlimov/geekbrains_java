@@ -1,16 +1,15 @@
 package com.company;
 
-public class Human implements Creatures{
-
+public class Human implements Creatures, Runable, Jumpable{
 
 
     @Override
-    public void Run() {
-
+    public void jump() {
+        System.out.println("Human is jumping");
     }
 
     @Override
-    public void Jump() {
-
+    public void run() {
+        System.out.println("Human is running");
     }
 }
