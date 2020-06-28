@@ -8,8 +8,11 @@ public class Main {
 	    fillWithZero(arr);
 	    calcExp(arr);
 	    //printArr(arr);
+        // за 1,324 сек
+        long time = System.currentTimeMillis();
 	    RunnableClass runnableClass = new RunnableClass(arr);
 	    runnableClass.calcByDivide(arr);
+        System.out.println("Div: " + (System.currentTimeMillis()-time));
     }
     public static void fillWithZero (float arr[]){
         for (int i = 0; i < arr.length; i++) {
